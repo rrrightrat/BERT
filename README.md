@@ -29,6 +29,6 @@ gradle run
 ```
 OR use this if gradle doesn't work:
 ```bash
-java -cp build/classes/java/main com.bert.Maim
+java -cp build/classes/java/main com.bert.Main
 ```
 
