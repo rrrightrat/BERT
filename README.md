@@ -34,7 +34,7 @@ OR use this if gradle doesn't work:
 java -cp build/classes/java/main com.bert.Main
 ```
 
-** • Android**
+**• Android**
 
 1. Download **termux** from F-driod or the termux github repository.
 
