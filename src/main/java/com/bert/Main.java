@@ -3,22 +3,6 @@ package com.bert;
 import java.util.Scanner;
 
 public class Main {
-    private static int readInt(Scanner sc) {
-        while (!sc.hasNextInt()) {
-            System.out.println(AnsiE.RED + "Invalid input. Please enter a valid integer." + AnsiE.RESET);
-            sc.next();
-        }
-        return sc.nextInt();
-    }
-
-    private static double readDouble(Scanner sc) {
-        while (!sc.hasNextDouble()) {
-            System.out.println(AnsiE.RED + "Invalid input. Please enter a valid number." + AnsiE.RESET);
-            sc.next();
-        }
-        return sc.nextDouble();
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -49,9 +33,11 @@ public class Main {
         System.out.println(AnsiE.WHITE + "  [7] Signal Strength(Jukebox,Beehive)" + AnsiE.RESET);
         System.out.println(AnsiE.WHITE + "  [8] Signal Strength(Brewing Stand,Cauldron)" + AnsiE.RESET);
 
+        System.out.println(AnsiE.WHITE + "  [9] Circuit Delay Calculator" + AnsiE.RESET);
+
         System.out.println(" ");
         System.out.print("Enter your choice : ");
-        int Choice = readInt(sc);
+        int Choice = sc.nextInt();
 
         AnsiE.clearScreen();
 
@@ -61,14 +47,14 @@ public class Main {
                     + "\n\n[1] Tick -> Seconds \n[2] Seconds -> Tick");
             System.out.print(AnsiE.BLUE + "\nEnter your choice: " + AnsiE.RESET);
 
-            int Choice2 = readInt(sc);
+            int Choice2 = sc.nextInt();
 
             AnsiE.clearScreen();
 
             if (Choice2 == 1) {
                 System.out.print("Enter no. of Ticks: ");
 
-                double ticks = readDouble(sc);
+                double ticks = sc.nextDouble();
 
                 double time = ticks * 1 / 20;
 
@@ -77,7 +63,7 @@ public class Main {
             if (Choice2 == 2) {
                 System.out.print("Enter no. of Seconds: ");
 
-                double time = readDouble(sc);
+                double time = sc.nextDouble();
 
                 double ticks = time * 20;
 
@@ -88,7 +74,7 @@ public class Main {
 
             System.out.print(AnsiE.YELLOW + "How many tick delays do you want? : " + AnsiE.RESET);
 
-            int tdelay = readInt(sc);
+            int tdelay = sc.nextInt();
 
             int fulltr = tdelay / 4;
             int extratr = tdelay % 4;
@@ -100,7 +86,8 @@ public class Main {
             AnsiE.clearScreen();
             System.out.println(AnsiE.CYAN + "Enter total game ticks (gt) for one full loop cycle: " + AnsiE.RESET);
 
-            double totalGameTicks = readDouble(sc);
+            // Read using 'sc'
+            double totalGameTicks = sc.nextDouble();
 
             if (totalGameTicks > 0) {
                 double redstoneTicks = totalGameTicks / 2.0;
@@ -124,7 +111,7 @@ public class Main {
             AnsiE.clearScreen();
             System.out.println(AnsiE.CYAN + "Enter total number of items in the hopper clock loop: " + AnsiE.RESET);
 
-            int items = readInt(sc);
+            int items = sc.nextInt();
 
             if (items > 0) {
                 double totalGameTicks = (double) items * 8.0;
@@ -148,10 +135,10 @@ public class Main {
         if (Choice == 5) {
             AnsiE.clearScreen();
             System.out.println(AnsiE.CYAN + "Enter On-time (in game ticks): " + AnsiE.RESET);
-            double ticksOn = readDouble(sc);
+            double ticksOn = sc.nextDouble();
 
             System.out.println(AnsiE.CYAN + "Enter Off-time (in game ticks): " + AnsiE.RESET);
-            double ticksOff = readDouble(sc);
+            double ticksOff = sc.nextDouble();
 
             double totalPeriod = ticksOn + ticksOff;
             if (totalPeriod > 0) {
@@ -171,12 +158,12 @@ public class Main {
             AnsiE.clearScreen();
             System.out.println(AnsiE.BOLD_YELLOW + "=== Standard Container Calculator ===" + AnsiE.RESET);
             System.out.println(AnsiE.CYAN + "Enter total items currently in the container: " + AnsiE.RESET);
-            int items = readInt(sc);
+            int items = sc.nextInt();
 
             System.out.println(AnsiE.CYAN
                     + "Enter total max capacity (e.g., 320 for Hopper, 1728 for Chest, 3456 for Double Chest): "
                     + AnsiE.RESET);
-            int maxCapacity = readInt(sc);
+            int maxCapacity = sc.nextInt();
 
             if (maxCapacity > 0) {
                 int signalStrength = 0;
@@ -203,19 +190,19 @@ public class Main {
             System.out.println(AnsiE.WHITE + "  [3] Beehive / Bee Nest" + AnsiE.RESET);
             System.out.print(AnsiE.BOLD_CYAN + "\n[BERT/Special]> " + AnsiE.RESET);
 
-            int specialChoice = readInt(sc);
+            int specialChoice = sc.nextInt();
 
             if (specialChoice == 1) {
                 System.out.println(AnsiE.CYAN + "Enter Music Disc Signal Value (1 to 15): " + AnsiE.RESET);
-                int discSignal = readInt(sc);
+                int discSignal = sc.nextInt();
                 System.out.println(AnsiE.GREEN + "\n--- Jukebox Output ---" + AnsiE.RESET);
                 System.out.println(AnsiE.WHITE + "Comparator Signal Strength: " + AnsiE.BOLD_YELLOW + discSignal
                         + " / 15" + AnsiE.RESET);
             } else if (specialChoice == 2) {
                 System.out.println(AnsiE.CYAN + "Enter current page number: " + AnsiE.RESET);
-                int currentPage = readInt(sc);
+                int currentPage = sc.nextInt();
                 System.out.println(AnsiE.CYAN + "Enter total pages in book: " + AnsiE.RESET);
-                int totalPages = readInt(sc);
+                int totalPages = sc.nextInt();
 
                 if (totalPages > 1) {
                     int signal = 1 + (int) Math.floor(((double) (currentPage - 1) / (totalPages - 1)) * 14.0);
@@ -227,7 +214,7 @@ public class Main {
                 }
             } else if (specialChoice == 3) {
                 System.out.println(AnsiE.CYAN + "Enter honey level (0 to 5): " + AnsiE.RESET);
-                int honeyLevel = readInt(sc);
+                int honeyLevel = sc.nextInt();
                 int signal = 0;
                 if (honeyLevel > 0) {
                     signal = honeyLevel * 3;
@@ -249,18 +236,18 @@ public class Main {
             System.out.println(AnsiE.WHITE + "  [3] Lava Cauldron" + AnsiE.RESET);
             System.out.print(AnsiE.BOLD_CYAN + "\n[BERT/BrewCauldron]> " + AnsiE.RESET);
 
-            int bcChoice = readInt(sc);
+            int bcChoice = sc.nextInt();
 
             if (bcChoice == 1) {
                 System.out.println(AnsiE.CYAN + "Enter number of bottles present (0 to 3): " + AnsiE.RESET);
-                int bottles = readInt(sc);
+                int bottles = sc.nextInt();
                 System.out.println(
                         AnsiE.CYAN + "Is an ingredient currently brewing? (1 for Yes, 0 for No): " + AnsiE.RESET);
-                int brewing = readInt(sc);
+                int brewing = sc.nextInt();
 
                 int signal = bottles;
                 if (brewing > 0 && bottles > 0) {
-                    signal = 3;
+                    signal = 3; // Simplified active state indicator or max bottle state
                 }
                 if (signal > 3)
                     signal = 3;
@@ -271,7 +258,7 @@ public class Main {
 
             } else if (bcChoice == 2) {
                 System.out.println(AnsiE.CYAN + "Enter liquid/snow level (0 = Empty, 1, 2, 3 = Full): " + AnsiE.RESET);
-                int level = readInt(sc);
+                int level = sc.nextInt();
 
                 int signal = 0;
                 if (level == 1)
@@ -293,6 +280,65 @@ public class Main {
             }
 
         }
+        AnsiE.clearScreen();
+        System.out.println(AnsiE.BOLD_YELLOW + "=== Circuit Delay Calculator ===" + AnsiE.RESET);
+        System.out.println(AnsiE.WHITE + "Add components to your redstone chain to sum total delay.\n" + AnsiE.RESET);
+
+        int totalGameTicks = 0;
+        boolean addingComponents = true;
+
+        while (addingComponents) {
+            System.out.println(AnsiE.CYAN + "Current Total Delay: " + AnsiE.BOLD_GREEN + (totalGameTicks / 2.0) + " RT"
+                    + AnsiE.RESET + " (" + totalGameTicks + " GT)");
+            System.out.println(AnsiE.WHITE + "  [1] Redstone Dust (0 GT)" + AnsiE.RESET);
+            System.out.println(AnsiE.WHITE + "  [2] Repeater (1-4 RT / 2-8 GT)" + AnsiE.RESET);
+            System.out.println(AnsiE.WHITE + "  [3] Comparator (1 RT / 2 GT)" + AnsiE.RESET);
+            System.out.println(AnsiE.WHITE + "  [4] Redstone Torch (1 RT / 2 GT)" + AnsiE.RESET);
+            System.out.println(AnsiE.WHITE + "  [5] Observer (1 RT / 2 GT)" + AnsiE.RESET);
+            System.out.println(AnsiE.WHITE + "  [6] Piston Extension (1.5 RT / 3 GT)" + AnsiE.RESET);
+            System.out.println(AnsiE.WHITE + "  [0] Finish & Calculate Total" + AnsiE.RESET);
+            System.out.print(AnsiE.BOLD_CYAN + "\nAdd component > " + AnsiE.RESET);
+
+            int choice = sc.nextInt();
+
+            if (choice == 1) {
+                System.out.println(AnsiE.GREEN + "-> Added Redstone Dust (+0 GT)\n" + AnsiE.RESET);
+            } else if (choice == 2) {
+                System.out.println(AnsiE.CYAN + "Enter Repeater Delay Setting (1, 2, 3, or 4 ticks): " + AnsiE.RESET);
+                int setting = sc.nextInt();
+                if (setting >= 1 && setting <= 4) {
+                    totalGameTicks += setting * 2;
+                    System.out.println(AnsiE.GREEN + "-> Added " + setting + " RT Repeater (+" + (setting * 2)
+                            + " GT)\n" + AnsiE.RESET);
+                } else {
+                    System.out.println(
+                            AnsiE.RED + "Invalid setting! Repeater delay must be between 1 and 4.\n" + AnsiE.RESET);
+                }
+            } else if (choice == 3) {
+                totalGameTicks += 2;
+                System.out.println(AnsiE.GREEN + "-> Added Comparator (+1 RT / +2 GT)\n" + AnsiE.RESET);
+            } else if (choice == 4) {
+                totalGameTicks += 2;
+                System.out.println(AnsiE.GREEN + "-> Added Redstone Torch (+1 RT / +2 GT)\n" + AnsiE.RESET);
+            } else if (choice == 5) {
+                totalGameTicks += 2;
+                System.out.println(AnsiE.GREEN + "-> Added Observer (+1 RT / +2 GT)\n" + AnsiE.RESET);
+            } else if (choice == 6) {
+                totalGameTicks += 3;
+                System.out.println(AnsiE.GREEN + "-> Added Piston (+1.5 RT / +3 GT)\n" + AnsiE.RESET);
+            } else if (choice == 0) {
+                addingComponents = false;
+            }
+        }
+
+        double totalRedstoneTicks = totalGameTicks / 2.0;
+        double totalSeconds = totalGameTicks / 20.0;
+
+        System.out.println(AnsiE.GREEN + "\n--- Total Circuit Delay Summary ---" + AnsiE.RESET);
+        System.out.println(AnsiE.WHITE + "Game Ticks (GT): " + AnsiE.BOLD_CYAN + totalGameTicks + " gt" + AnsiE.RESET);
+        System.out.println(
+                AnsiE.WHITE + "Redstone Ticks (RT): " + AnsiE.BOLD_YELLOW + totalRedstoneTicks + " rt" + AnsiE.RESET);
+        System.out.println(AnsiE.WHITE + "Real Time (Seconds): " + AnsiE.BOLD_CYAN + totalSeconds + " s" + AnsiE.RESET);
 
     }
 }
