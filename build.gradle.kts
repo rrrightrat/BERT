@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    id("application")
 }
 
 group = "com.bert"
@@ -8,10 +7,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-}
-
-application {
-    mainClass.set("com.bert.Main")
 }
 
 dependencies {
