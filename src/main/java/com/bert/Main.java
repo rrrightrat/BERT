@@ -3,6 +3,22 @@ package com.bert;
 import java.util.Scanner;
 
 public class Main {
+    private static int readInt(Scanner sc) {
+        while (!sc.hasNextInt()) {
+            System.out.println(AnsiE.RED + "Invalid input. Please enter a valid integer." + AnsiE.RESET);
+            sc.next();
+        }
+        return sc.nextInt();
+    }
+
+    private static double readDouble(Scanner sc) {
+        while (!sc.hasNextDouble()) {
+            System.out.println(AnsiE.RED + "Invalid input. Please enter a valid number." + AnsiE.RESET);
+            sc.next();
+        }
+        return sc.nextDouble();
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -35,7 +51,7 @@ public class Main {
 
         System.out.println(" ");
         System.out.print("Enter your choice : ");
-        int Choice = sc.nextInt();
+        int Choice = readInt(sc);
 
         AnsiE.clearScreen();
 
@@ -45,14 +61,14 @@ public class Main {
                     + "\n\n[1] Tick -> Seconds \n[2] Seconds -> Tick");
             System.out.print(AnsiE.BLUE + "\nEnter your choice: " + AnsiE.RESET);
 
-            int Choice2 = sc.nextInt();
+            int Choice2 = readInt(sc);
 
             AnsiE.clearScreen();
 
             if (Choice2 == 1) {
                 System.out.print("Enter no. of Ticks: ");
 
-                double ticks = sc.nextDouble();
+                double ticks = readDouble(sc);
 
                 double time = ticks * 1 / 20;
 
@@ -61,7 +77,7 @@ public class Main {
             if (Choice2 == 2) {
                 System.out.print("Enter no. of Seconds: ");
 
-                double time = sc.nextDouble();
+                double time = readDouble(sc);
 
                 double ticks = time * 20;
 
@@ -72,7 +88,7 @@ public class Main {
 
             System.out.print(AnsiE.YELLOW + "How many tick delays do you want? : " + AnsiE.RESET);
 
-            int tdelay = sc.nextInt();
+            int tdelay = readInt(sc);
 
             int fulltr = tdelay / 4;
             int extratr = tdelay % 4;
@@ -84,8 +100,7 @@ public class Main {
             AnsiE.clearScreen();
             System.out.println(AnsiE.CYAN + "Enter total game ticks (gt) for one full loop cycle: " + AnsiE.RESET);
 
-            // Read using 'sc'
-            double totalGameTicks = sc.nextDouble();
+            double totalGameTicks = readDouble(sc);
 
             if (totalGameTicks > 0) {
                 double redstoneTicks = totalGameTicks / 2.0;
@@ -109,7 +124,7 @@ public class Main {
             AnsiE.clearScreen();
             System.out.println(AnsiE.CYAN + "Enter total number of items in the hopper clock loop: " + AnsiE.RESET);
 
-            int items = sc.nextInt();
+            int items = readInt(sc);
 
             if (items > 0) {
                 double totalGameTicks = (double) items * 8.0;
@@ -133,10 +148,10 @@ public class Main {
         if (Choice == 5) {
             AnsiE.clearScreen();
             System.out.println(AnsiE.CYAN + "Enter On-time (in game ticks): " + AnsiE.RESET);
-            double ticksOn = sc.nextDouble();
+            double ticksOn = readDouble(sc);
 
             System.out.println(AnsiE.CYAN + "Enter Off-time (in game ticks): " + AnsiE.RESET);
-            double ticksOff = sc.nextDouble();
+            double ticksOff = readDouble(sc);
 
             double totalPeriod = ticksOn + ticksOff;
             if (totalPeriod > 0) {
@@ -156,12 +171,12 @@ public class Main {
             AnsiE.clearScreen();
             System.out.println(AnsiE.BOLD_YELLOW + "=== Standard Container Calculator ===" + AnsiE.RESET);
             System.out.println(AnsiE.CYAN + "Enter total items currently in the container: " + AnsiE.RESET);
-            int items = sc.nextInt();
+            int items = readInt(sc);
 
             System.out.println(AnsiE.CYAN
                     + "Enter total max capacity (e.g., 320 for Hopper, 1728 for Chest, 3456 for Double Chest): "
                     + AnsiE.RESET);
-            int maxCapacity = sc.nextInt();
+            int maxCapacity = readInt(sc);
 
             if (maxCapacity > 0) {
                 int signalStrength = 0;
@@ -188,19 +203,19 @@ public class Main {
             System.out.println(AnsiE.WHITE + "  [3] Beehive / Bee Nest" + AnsiE.RESET);
             System.out.print(AnsiE.BOLD_CYAN + "\n[BERT/Special]> " + AnsiE.RESET);
 
-            int specialChoice = sc.nextInt();
+            int specialChoice = readInt(sc);
 
             if (specialChoice == 1) {
                 System.out.println(AnsiE.CYAN + "Enter Music Disc Signal Value (1 to 15): " + AnsiE.RESET);
-                int discSignal = sc.nextInt();
+                int discSignal = readInt(sc);
                 System.out.println(AnsiE.GREEN + "\n--- Jukebox Output ---" + AnsiE.RESET);
                 System.out.println(AnsiE.WHITE + "Comparator Signal Strength: " + AnsiE.BOLD_YELLOW + discSignal
                         + " / 15" + AnsiE.RESET);
             } else if (specialChoice == 2) {
                 System.out.println(AnsiE.CYAN + "Enter current page number: " + AnsiE.RESET);
-                int currentPage = sc.nextInt();
+                int currentPage = readInt(sc);
                 System.out.println(AnsiE.CYAN + "Enter total pages in book: " + AnsiE.RESET);
-                int totalPages = sc.nextInt();
+                int totalPages = readInt(sc);
 
                 if (totalPages > 1) {
                     int signal = 1 + (int) Math.floor(((double) (currentPage - 1) / (totalPages - 1)) * 14.0);
@@ -212,7 +227,7 @@ public class Main {
                 }
             } else if (specialChoice == 3) {
                 System.out.println(AnsiE.CYAN + "Enter honey level (0 to 5): " + AnsiE.RESET);
-                int honeyLevel = sc.nextInt();
+                int honeyLevel = readInt(sc);
                 int signal = 0;
                 if (honeyLevel > 0) {
                     signal = honeyLevel * 3;
@@ -234,18 +249,18 @@ public class Main {
             System.out.println(AnsiE.WHITE + "  [3] Lava Cauldron" + AnsiE.RESET);
             System.out.print(AnsiE.BOLD_CYAN + "\n[BERT/BrewCauldron]> " + AnsiE.RESET);
 
-            int bcChoice = sc.nextInt();
+            int bcChoice = readInt(sc);
 
             if (bcChoice == 1) {
                 System.out.println(AnsiE.CYAN + "Enter number of bottles present (0 to 3): " + AnsiE.RESET);
-                int bottles = sc.nextInt();
+                int bottles = readInt(sc);
                 System.out.println(
                         AnsiE.CYAN + "Is an ingredient currently brewing? (1 for Yes, 0 for No): " + AnsiE.RESET);
-                int brewing = sc.nextInt();
+                int brewing = readInt(sc);
 
                 int signal = bottles;
                 if (brewing > 0 && bottles > 0) {
-                    signal = 3; // Simplified active state indicator or max bottle state
+                    signal = 3;
                 }
                 if (signal > 3)
                     signal = 3;
@@ -256,7 +271,7 @@ public class Main {
 
             } else if (bcChoice == 2) {
                 System.out.println(AnsiE.CYAN + "Enter liquid/snow level (0 = Empty, 1, 2, 3 = Full): " + AnsiE.RESET);
-                int level = sc.nextInt();
+                int level = readInt(sc);
 
                 int signal = 0;
                 if (level == 1)
@@ -278,6 +293,6 @@ public class Main {
             }
 
         }
-        
+
     }
 }
