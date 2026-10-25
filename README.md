@@ -17,7 +17,7 @@ pkg install openjdk-21 git gradle -y
 ```bash
 git clone https://github.com/rrrightrat/BERT.git
 ```
-3. Open Athelgard directory:
+3. Open BERT directory:
 ```bash
 cd BERT
 ```
