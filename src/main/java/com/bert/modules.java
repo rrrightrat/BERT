@@ -40,6 +40,7 @@ public class modules {
         System.out.println(AnsiE.WHITE + "  [8] Signal Strength(Brewing Stand,Cauldron)" + AnsiE.RESET);
 
         System.out.println(AnsiE.WHITE + "  [9] Circuit Delay Calculator" + AnsiE.RESET);
+        System.out.println(AnsiE.WHITE + "  [10] OSC Time and AFK calculator" + AnsiE.RESET);
 
     }
     
@@ -338,6 +339,27 @@ public class modules {
         System.out.println(
                 AnsiE.WHITE + "Redstone Ticks (RT): " + AnsiE.BOLD_YELLOW + totalRedstoneTicks + " rt" + AnsiE.RESET);
         System.out.println(AnsiE.WHITE + "Real Time (Seconds): " + AnsiE.BOLD_CYAN + totalSeconds + " s" + AnsiE.RESET);
+    }
+    public static void m10(){
+        System.out.println(AnsiE.BOLD_PURPLE+"== OSC Distance and Afk calculator =="+AnsiE.RESET);
+        
+        System.out.println(" ");
+        
+        System.out.print(AnsiE.BOLD_GREEN+"What distance are you aiming for (in blocks)? > "+AnsiE.RESET); 
+        
+        int dis = sc.nextInt();
+        
+        int items = dis * 128/65;
+        double time = items * 0.8;
+        
+        double mins = time /60;
+        double hrs = mins/60;
+        
+        AnsiE.clearScreen();
+        
+        System.out.println(AnsiE.BOLD_CYAN+"Items in distance barrel: "+items+" items \nAfk time: "+time+" seconds \nAfk time in mins: "+mins+" mins \nAfk time in hours: "+hrs+" hours"+AnsiE.RESET);
+        
+        
     }
 
  

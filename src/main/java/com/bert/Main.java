@@ -45,5 +45,8 @@ public class Main {
         if(Choice == 9){
             modules.m9();
         }
+        if(Choice == 10){
+            modules.m10();
+        }
     }
 }
